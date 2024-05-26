@@ -5,9 +5,11 @@ const getRestaurant = async (req: Request, res: Response) => {
   try {
     const restaurantId = req.params.restaurantId;
 
+    console.log(`Fetching restaurant with ID: ${restaurantId}`);
+
     const restaurant = await Restaurant.findById(restaurantId);
     if (!restaurant) {
-      return res.status(404).json({ message: "restaurant not found" });
+      return res.status(405).json({ message: "restaurant not found" });
     }
 
     res.json(restaurant);
